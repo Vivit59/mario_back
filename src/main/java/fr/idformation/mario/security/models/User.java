@@ -1,6 +1,5 @@
 package fr.idformation.mario.security.models;
 
-import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +16,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import jakarta.validation.constraints.Email;
 
 @Entity
 @Table(name = "user", uniqueConstraints = { @UniqueConstraint(columnNames = "username"),
@@ -70,7 +68,7 @@ public class User {
 	 * @param pLastName the lastname
 	 * @param pAddress the address
 	 */
-	public User(final String pUsername, final String pPassword, final String pFirstName, final String pLastName, final String pAddress) {
+	public User(final String pUsername, final String pPassword, final String pFirstName, final String pLastName, final String pAddress){
 		this.username = pUsername;
 		this.password = pPassword;
 		this.firstname = pFirstName;
@@ -114,10 +112,10 @@ public class User {
 	}
 
 	/**
-	 * @param address the address to set
+	 * @param pAddress the address to set
 	 */
-	public void setAddress(final String address) {
-		this.address = address;
+	public void setAddress(final String pAddress) {
+		this.address = pAddress;
 	}
 
 	/**

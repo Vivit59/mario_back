@@ -16,11 +16,11 @@ public class UserDto {
 	/** the lastname. */
 	private String lastname;
 
-	/** the role of te user. */
+	/** the role of the user. */
 	private String role;
 
-	/** Has the user a profile picture? */
-	private boolean hasPicture;
+	/** the address of the user.*/
+	private String address;
 
 	/** Default constructor. */
 	public UserDto() {
@@ -37,7 +37,7 @@ public class UserDto {
 		this.firstname = pUser.getFirstname();
 		this.lastname = pUser.getLastname();
 		this.role = pUser.getRoles().iterator().next().getName().name();
-		this.hasPicture = pUser.getPicture() != null;
+		this.address = pUser.getAddress();
 
 	}
 
@@ -70,10 +70,17 @@ public class UserDto {
 	}
 
 	/**
-	 * @return the hasPicture
+	 * @return the address
 	 */
-	public boolean isHasPicture() {
-		return hasPicture;
+	public String getAddress() {
+		return address;
+	}
+
+	/**
+	 * @param pAddress the address to set
+	 */
+	public void setAddress(final String pAddress) {
+		this.address = pAddress;
 	}
 
 	/**
@@ -81,13 +88,6 @@ public class UserDto {
 	 */
 	public void setFirstname(final String pFirstname) {
 		this.firstname = pFirstname;
-	}
-
-	/**
-	 * @param pHasPicture the hasPicture to set
-	 */
-	public void setHasPicture(final boolean pHasPicture) {
-		this.hasPicture = pHasPicture;
 	}
 
 	/**

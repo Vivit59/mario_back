@@ -1,11 +1,7 @@
 package fr.idformation.mario.security.controller;
 
-import java.sql.SQLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -108,21 +104,6 @@ public final class AuthController {
 							tokenProvider.getExpiryDate(jwt), refreshToken.getToken()));
 				})
 				.orElseThrow(() -> new TokenRefreshException(requestRefreshToken, "Refresh token is not in database!"));
-	}
-
-	/**
-	 *
-	 * @param username a username
-	 * @return the profile picture of the user
-	 * @throws SQLException
-	 */
-	@GetMapping(value = "/picture/{username}", produces = MediaType.IMAGE_PNG_VALUE)
-	public ResponseEntity<InputStreamResource> getPicture(@PathVariable("username") final String username)
-			throws SQLException {
-		User user = userService.loadUserDetails(username);
-
-		return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG)
-				.body(new InputStreamResource(user.getPicture().getBinaryStream()));
 	}
 
 	/**
