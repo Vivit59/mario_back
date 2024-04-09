@@ -29,6 +29,7 @@ public class User {
 
 	/** username aka login. */
 	@NonNull
+	@Column(name="phonenumber")
 	private String username = "...";
 
 
