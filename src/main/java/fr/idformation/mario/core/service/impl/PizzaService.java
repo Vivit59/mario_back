@@ -1,5 +1,5 @@
 /**
- * 
+ * author Sylvie Debue.
  */
 package fr.idformation.mario.core.service.impl;
 
@@ -13,14 +13,15 @@ import fr.idformation.mario.core.repository.IPizzaRepository;
 import fr.idformation.mario.core.service.IPizzaService;
 
 /**
- * 
+ *
  */
 @Service
 public final class PizzaService implements IPizzaService {
 
+	/** repository for the pizzas. */
 	@Autowired
 	private IPizzaRepository pizRepo;
-	
+
 	@Override
 	public List<Pizza> getAllPizzas() {
 		return pizRepo.findAll();
