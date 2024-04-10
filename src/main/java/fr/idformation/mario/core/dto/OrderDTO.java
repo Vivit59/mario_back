@@ -1,59 +1,39 @@
 /**
- * .
+ * author Sylvie Debue.
  */
-package fr.idformation.mario.core.domain;
+package fr.idformation.mario.core.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import fr.idformation.mario.core.domain.OrderLine;
 import fr.idformation.mario.security.models.User;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 /**
- * The entity order.
+ * the orderDTO.
  */
-@Entity
-@Table(name="order")
-public class Order {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class OrderDTO {
 
-	/** the unique id of the order. */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	/** the id of the orderDTO. */
 	private Long id;
 
-	/** the id of the client.*/
-	//an order is associated with an user.
-	@ManyToOne
-	@JoinColumn(name = "usr_id", nullable = false)
+	/** a user. */
 	private User user;
 
 	/** the date of the order. */
-	@Column(name="date", nullable = false)
 	private  LocalDateTime date;
 
 	/** the total of the order. */
-	@Column(name="total_amount", nullable = false)
 	private Double totalAmount;
 
-	/** the list of the orderlines. */
-	// an order can have multiple order lines.
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderLine> orderLines;
+    /** the list of the orderlines. */
+	private List<OrderLine> orderLines;
 
-	/**
-	 * default constructor.
-	 */
-	public Order() {
+	/** default constructor. */
+	public OrderDTO() {
 		super();
 	}
 
@@ -130,7 +110,7 @@ public class Order {
 	/** method toString. */
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user=" + user + ", date=" + date + ", totalAmount=" + totalAmount
+		return "OrderDTO [id=" + id + ", user=" + user + ", date=" + date + ", totalAmount=" + totalAmount
 				+ ", orderLines=" + orderLines + "]";
 	}
 

@@ -27,13 +27,13 @@ public class OrderLine {
 	private Long id;
 
     /** an order. */
-	// une ligne de commande est associée à une commande
+	// an order line is associated with an order
 	@ManyToOne
     @JoinColumn(name = "ord_id", nullable = false)
     private Order order;
 
     /** a pizza. */
-	// une ligne de commande est associée à une pizza
+	// an order line is associated with a pizza
 	@ManyToOne
     @JoinColumn(name = "piz_id", nullable = false)
     private Pizza pizza;
