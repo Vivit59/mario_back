@@ -39,7 +39,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = { "http://localhost:3666", "https://biller-375810.web.app/" })
+@CrossOrigin(origins = { "http://localhost:3000" })
 public final class AuthController {
 
 	/** token header to use in JWT. */

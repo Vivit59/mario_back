@@ -22,7 +22,7 @@ import jakarta.persistence.Table;
  * The entity order.
  */
 @Entity
-@Table(name="order")
+@Table(name="`order`")
 public class Order {
 
 	/** the unique id of the order. */
@@ -35,7 +35,7 @@ public class Order {
 	//an order is associated with an user.
 	@ManyToOne
 	@JoinColumn(name = "usr_id", nullable = false)
-	private User user;
+	private UserPizza userPizza;
 
 	/** the date of the order. */
 	@Column(name="date", nullable = false)
@@ -74,15 +74,15 @@ public class Order {
 	/**
 	 * @return the user
 	 */
-	public User getUser() {
-		return user;
+	public UserPizza getUserPizza() {
+		return userPizza;
 	}
 
 	/**
-	 * @param pUser the user to set
+	 * @param pUserPizza the user to set
 	 */
-	public void setUser(final User pUser) {
-		this.user = pUser;
+	public void setUserPizza(final UserPizza pUserPizza) {
+		this.userPizza = pUserPizza;
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class Order {
 	/** method toString. */
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user=" + user + ", date=" + date + ", totalAmount=" + totalAmount
+		return "Order [id=" + id + ", userPizza=" + userPizza + ", date=" + date + ", totalAmount=" + totalAmount
 				+ ", orderLines=" + orderLines + "]";
 	}
 

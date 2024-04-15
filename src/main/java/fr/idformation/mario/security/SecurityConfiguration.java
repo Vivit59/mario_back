@@ -62,6 +62,7 @@ public class SecurityConfiguration {
 		http.authorizeHttpRequests(req -> req.requestMatchers("/settings/logo").permitAll());
 		http.authorizeHttpRequests(req -> req.anyRequest().authenticated());
 
+
 		return http.build();
 	}
 

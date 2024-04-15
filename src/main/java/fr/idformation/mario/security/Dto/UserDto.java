@@ -19,9 +19,6 @@ public class UserDto {
 	/** the role of the user. */
 	private String role;
 
-	/** the address of the user.*/
-	private String address;
-
 	/** Default constructor. */
 	public UserDto() {
 		super();
@@ -37,7 +34,6 @@ public class UserDto {
 		this.firstname = pUser.getFirstname();
 		this.lastname = pUser.getLastname();
 		this.role = pUser.getRoles().iterator().next().getName().name();
-		this.address = pUser.getAddress();
 
 	}
 
@@ -67,20 +63,6 @@ public class UserDto {
 	 */
 	public String getUsername() {
 		return username;
-	}
-
-	/**
-	 * @return the address
-	 */
-	public String getAddress() {
-		return address;
-	}
-
-	/**
-	 * @param pAddress the address to set
-	 */
-	public void setAddress(final String pAddress) {
-		this.address = pAddress;
 	}
 
 	/**
