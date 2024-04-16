@@ -16,7 +16,7 @@ import fr.idformation.mario.core.dto.OrderLineDTO;
  */
 public class OrderMapper {
 
-	/**
+	/*
 	public static OrderDTO orderToDto(final Order order) {
 		OrderDTO dto = null;
 
