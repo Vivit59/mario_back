@@ -74,6 +74,36 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+      			<groupId>org.apache.maven.plugins</groupId>
+      			<artifactId>maven-checkstyle-plugin</artifactId>
+      			<version>3.3.1</version>
+      			<configuration>
+        			<failsOnError>false</failsOnError>
+        			<configLocation>ci/check.xml</configLocation>
+      			</configuration>
+    		</plugin>
+    		<plugin>
+      			<groupId>org.apache.maven.plugins</groupId>
+      			<artifactId>maven-pmd-plugin</artifactId>
+      			<version>3.21.2</version>
+      			<configuration>
+        			<includeTests>true</includeTests>
+        			<failOnViolation>false</failOnViolation>
+        			<skipEmptyReport>false</skipEmptyReport>
+      			</configuration>
+    		</plugin>
+    		<plugin>
+		     	<groupId>com.github.spotbugs</groupId>
+		      	<artifactId>spotbugs-maven-plugin</artifactId>
+		      	<version>4.8.3.0</version>
+		      	<configuration>
+					<effort>Max</effort>
+					<threshold>medium</threshold>
+		        	<xmlOutput>true</xmlOutput>
+		        	<failOnError>false</failOnError>
+		      	</configuration>
+    		</plugin>
 		</plugins>
 	</build>
 
