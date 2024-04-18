@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.idformation.mario.core.domain.Order;
 import fr.idformation.mario.core.dto.OrderDTO;
 import fr.idformation.mario.core.dto.mapper.OrderMapper;
 import fr.idformation.mario.core.service.IOrderService;
@@ -27,12 +26,12 @@ public class OrderController {
 
 	/**
 	 * create or update an order.
-	 * @param order
+	 * @param ord
 	 * @return an new or update order
 	 */
 	@PostMapping("/")
 	public OrderDTO save(@RequestBody final OrderDTO ord) {
-		
+
 		return OrderMapper.entityToDto(orderService.save(OrderMapper.dtoToEntity(ord)));
 	}
 }
