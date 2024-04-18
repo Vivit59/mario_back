@@ -35,7 +35,7 @@ public class Order {
 	//an order is associated with an user.
 	@ManyToOne
 	@JoinColumn(name = "usr_id", nullable = false)
-	private UserPizza userPizza;
+	private User user;
 
 	/** the date of the order. */
 	@Column(name="date", nullable = false)
@@ -74,15 +74,15 @@ public class Order {
 	/**
 	 * @return the user
 	 */
-	public UserPizza getUserPizza() {
-		return userPizza;
+	public User getUser() {
+		return user;
 	}
 
 	/**
-	 * @param pUserPizza the user to set
+	 * @param pUser the user to set
 	 */
-	public void setUserPizza(final UserPizza pUserPizza) {
-		this.userPizza = pUserPizza;
+	public void setUser(final User pUser) {
+		this.user = pUser;
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class Order {
 	/** method toString. */
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", userPizza=" + userPizza + ", date=" + date + ", totalAmount=" + totalAmount
+		return "Order [id=" + id + ", user=" + user + ", date=" + date + ", totalAmount=" + totalAmount
 				+ ", orderLines=" + orderLines + "]";
 	}
 

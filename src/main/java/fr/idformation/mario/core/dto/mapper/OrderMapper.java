@@ -3,13 +3,8 @@
  */
 package fr.idformation.mario.core.dto.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.idformation.mario.core.domain.Order;
-import fr.idformation.mario.core.domain.OrderLine;
 import fr.idformation.mario.core.dto.OrderDTO;
-import fr.idformation.mario.core.dto.OrderLineDTO;
 
 /**
  * The mapper of the order.
@@ -17,30 +12,23 @@ import fr.idformation.mario.core.dto.OrderLineDTO;
 public class OrderMapper {
 
 	/**
-	public static OrderDTO orderToDto(final Order order) {
-		OrderDTO dto = null;
+	 * maps an orderDTO into an order.
+	 * @param orderD
+	 * @return an order
+	 */
+	public static Order dtoToEntity (final OrderDTO orderD) {
+		Order entity = null;
 
-		if (order != null) {
-			dto = new OrderDTO();
+		if (orderD != null) {
+			entity = new Order();
 
-			dto.setId(order.getId());
-			dto.setUser(order.getUser());
-			dto.setDate(order.getDate());
-			dto.setTotalAmount(order.getTotalAmount());
-
-			if(order.getOrderLines() != null && !order.getOrderLines().isEmpty()) {
-				List<OrderLineDTO> orderLineDTOs = new ArrayList<>();
-				for (OrderLineDTO orderLineDTO : orderLineDTOs) {
-				    OrderLineDTO orderLine = new OrderLineDTO();
-				    orderLineDTO.setId(orderLine.getId());
-				    orderLineDTO.setPizza(orderLine.getPizza());
-				    orderLineDTO.setQuantity(orderLine.getQuantity());
-
-				    orderLineDTOs.add(orderLineDTO);
-				}
-				dto.setOrderLines(orderLineDTOs);
+			entity.setId(orderD.getId());
+			entity.setUser(orderD.getUser());
+			entity.setDate(orderD.getDate());
+			entity.setTotalAmount(orderD.getTotalAmount());
+			entity.setOrderLines(OrderLineMapper.dtoToLines(orderD.getOrderLines()));
 			}
-		}
-		return dto;
-	}*/
+
+		return entity;
+	}
 }
