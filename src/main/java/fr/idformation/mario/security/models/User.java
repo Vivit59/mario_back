@@ -57,7 +57,7 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 
 	/** a user can have several orders. */
-	@OneToMany(mappedBy = "userPizza")
+	@OneToMany(mappedBy = "user")
 	private List<Order> orders;
 
 	/**

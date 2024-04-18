@@ -8,7 +8,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import fr.idformation.mario.core.domain.OrderLine;
 import fr.idformation.mario.security.models.User;
 
 /**
@@ -29,8 +28,8 @@ public class OrderDTO {
 	/** the total of the order. */
 	private Double totalAmount;
 
-    /** the list of the orderlines. */
-	private List<OrderLine> orderLines;
+    /** the list of the orderlinesDTO. */
+	private List<OrderLineDTO> orderLines;
 
 	/** default constructor. */
 	public OrderDTO() {
@@ -96,14 +95,14 @@ public class OrderDTO {
 	/**
 	 * @return the orderLines
 	 */
-	public List<OrderLine> getOrderLines() {
+	public List<OrderLineDTO> getOrderLines() {
 		return orderLines;
 	}
 
 	/**
 	 * @param pOrderLines the orderLines to set
 	 */
-	public void setOrderLines(final List<OrderLine> pOrderLines) {
+	public void setOrderLines(final List<OrderLineDTO> pOrderLines) {
 		this.orderLines = pOrderLines;
 	}
 

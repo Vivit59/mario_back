@@ -8,8 +8,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -119,5 +117,15 @@ public final class AuthController {
 
 		return new UserDto(userService.update(user));
 
+	}
+
+	/**
+	 *
+	 * @param newUser
+	 * @return a new user
+	 */
+	@PostMapping("/signup")
+	User newUser (@RequestBody final User newUser) {
+		return null /*userRepository.save(newUser)*/;
 	}
 }
