@@ -31,4 +31,23 @@ public class OrderMapper {
 
 		return entity;
 	}
+
+	/**
+	 * maps an order into an orderDTO.
+	 * @param order
+	 * @return an orderDTO
+	 */
+	public static OrderDTO entityToDto(final Order order) {
+		OrderDTO dto = null;
+		if (order != null) {
+			dto = new OrderDTO();
+
+			dto.setId(order.getId());
+			dto.setUser(order.getUser());
+			dto.setDate(order.getDate());
+			dto.setTotalAmount(order.getTotalAmount());
+			dto.setOrderLines(OrderLineMapper.orderLineToDtos(order.getOrderLines()));
+		}
+		return dto;
+	}
 }
