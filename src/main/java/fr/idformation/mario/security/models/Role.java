@@ -3,6 +3,8 @@ package fr.idformation.mario.security.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,6 +27,7 @@ public class Role {
 	private RoleName name;
 
 	/** set of users.*/
+	@JsonIgnore
 	@ManyToMany(mappedBy = "roles")
 	private Set<User> users = new HashSet<>();
 
