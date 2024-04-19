@@ -1,12 +1,15 @@
 package fr.idformation.mario.security.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -120,12 +123,32 @@ public final class AuthController {
 	}
 
 	/**
-	 *
-	 * @param newUser
-	 * @return a new user
-	 */
-	@PostMapping("/signup")
-	User newUser (@RequestBody final User newUser) {
-		return null /*userRepository.save(newUser)*/;
-	}
+     * Create a new user.
+     *
+     * @param newUser the user information to create
+     * @return ResponseEntity
+     */
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody final UserDto newUser) {
+
+    	// Créer un nouvel utilisateur
+        User user = new User();
+        user.setUsername(newUser.getUsername());
+        user.setFirstname(newUser.getFirstname());
+        user.setLastname(newUser.getLastname());
+        user.setAddress(newUser.getAddress());
+
+        // Créer une instance de BCryptPasswordEncoder
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        // Encoder le mot de passe avec BCrypt
+        String encodedPassword = passwordEncoder.encode(newUser.getPassword());
+        user.setPassword(encodedPassword);
+
+        // Enregistrer l'utilisateur dans la base de données
+        User createdUser = userService.update(user);
+
+        return ResponseEntity.ok().body(createdUser);
+
+    	}
 }
