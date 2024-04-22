@@ -24,7 +24,10 @@ import fr.idformation.mario.security.Dto.UserDto;
 import fr.idformation.mario.security.jwt.JwtProvider;
 import fr.idformation.mario.security.jwt.exception.TokenRefreshException;
 import fr.idformation.mario.security.models.RefreshToken;
+import fr.idformation.mario.security.models.Role;
+import fr.idformation.mario.security.models.RoleName;
 import fr.idformation.mario.security.models.User;
+import fr.idformation.mario.security.repository.RoleRepository;
 import fr.idformation.mario.security.service.IRefreshTokenService;
 import fr.idformation.mario.security.service.impl.UserDetailsServiceImpl;
 
@@ -62,6 +65,10 @@ public final class AuthController {
 	/** import user service. */
 	@Autowired
 	private UserDetailsServiceImpl userService;
+
+	/** import repo.*/
+	@Autowired
+	private RoleRepository repo;
 
 	/**
 	 *
@@ -144,6 +151,12 @@ public final class AuthController {
         // Encoder le mot de passe avec BCrypt
         String encodedPassword = passwordEncoder.encode(newUser.getPassword());
         user.setPassword(encodedPassword);
+
+        // Créer ou récupérer le rôle "USER"
+        Role userRole = repo.findByName(RoleName.USER)
+                .orElseThrow(() -> new RuntimeException("Role USER not found"));
+        // Ajouter le rôle "USER" à l'utilisateur
+        user.getRoles().add(userRole);
 
         // Enregistrer l'utilisateur dans la base de données
         User createdUser = userService.update(user);
