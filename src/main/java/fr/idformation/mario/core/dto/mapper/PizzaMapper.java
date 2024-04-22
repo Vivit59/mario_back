@@ -50,22 +50,4 @@ public class PizzaMapper {
 		return dtos;
 	}
 
-	/**
-	 * Create a pizza from a PizzaDTO.
-	 * @param dto the dto used as a source
-	 * @return a pizza filled with datas from dto
-	 */
-	public static Pizza dtoToEntity(final PizzaDTO dto) {
-		Pizza entity = null;
-
-		if (dto != null) {
-			entity = new Pizza();
-			entity.setId(dto.getId());
-			entity.setName(dto.getName());
-			entity.setDescription(dto.getDescription());
-			entity.setImage(dto.getImage());
-			entity.setPrice(dto.getPrice());
-		}
-		return entity;
-	}
 }
