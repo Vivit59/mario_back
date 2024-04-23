@@ -152,7 +152,7 @@ public final class AuthController {
         String encodedPassword = passwordEncoder.encode(newUser.getPassword());
         user.setPassword(encodedPassword);
 
-        // Créer ou récupérer le rôle "USER"
+        // Récupérer le rôle "USER"
         Role userRole = repo.findByName(RoleName.USER)
                 .orElseThrow(() -> new RuntimeException("Role USER not found"));
         // Ajouter le rôle "USER" à l'utilisateur
@@ -161,7 +161,18 @@ public final class AuthController {
         // Enregistrer l'utilisateur dans la base de données
         User createdUser = userService.update(user);
 
-        return ResponseEntity.ok().body(createdUser);
+        // Générer le token JWT
+        String jwt = tokenProvider.generateToken(newUser.getUsername());
+
+		refreshTokenService.deleteExpired();
+		RefreshToken refreshToken = refreshTokenService.createRefreshToken(createdUser.getId());
+
+        // Créer une instance de JwtResponse avec le token JWT, la date d'expiration, l'utilisateur et le refresh token
+        JwtResponse jwtResponse = new JwtResponse(tokenHeader + " " + jwt, tokenProvider.getExpiryDate(jwt),
+        		new UserDto(createdUser), refreshToken.getToken());
+
+
+        return ResponseEntity.ok().body(jwtResponse);
 
     	}
 }
